@@ -4,5 +4,5 @@ class Variant < ActiveRecord::Base
 
   validates :price, :quantity, presence: true
 
-  # scope :active, ->{ where(is_active: true) }
+  scope :active, ->{ where(is_active: true) }
 end

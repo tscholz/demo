@@ -5,4 +5,9 @@ class Buyer < ActiveRecord::Base
         #, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :credits, numericality: {greater_than_or_equal_to: 0}
+
+
+  def buy_for(price)
+    self.credits -= price
+  end
 end

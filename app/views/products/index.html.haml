@@ -1,13 +1,13 @@
 %table.table
   %thead
     %tr
-      %th Title
-      %th Price
+      %th= Product.human_attribute_name :title
+      %th= Product.human_attribute_name :price
       %th
 
   - @products.each do |product|
     %tbody
       %tr
         %td= product.title
-        %td= product.variants.first.try(:price)
+        %td= product.price
         %td= link_to "Buy", product_purchase_path(product), method: 'POST'

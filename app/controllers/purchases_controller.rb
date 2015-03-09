@@ -1,18 +1,23 @@
 class PurchasesController < ApplicationController
 
   def create
-    @product = Product.find params[:product_id]
-    @variant = @product.variants.first
-    current_buyer.credits -= @variant.price
+    @purchase = Product.find(params[:product_id]).cheapest
+    current_buyer.buy_for @purchase.price
 
     if current_buyer.save
-      @variant.decrement! :quantity
-      @variant.coupons.create!
+      update_purchase!
       flash[:notice] = "You bought it!"
     else
-      flash[:warning] = "You don't have enouth cash to by this!"
+      flash[:warning] = "You don't have enouth cash to buy this!"
     end
 
     redirect_to products_path
+  end
+
+
+  private
+  def update_purchase!
+    @purchase.decrement! :quantity
+    @purchase.coupons.create!
   end
 end
