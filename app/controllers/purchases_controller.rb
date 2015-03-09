@@ -7,6 +7,7 @@ class PurchasesController < ApplicationController
 
     if current_buyer.save
       @variant.decrement! :quantity
+      @variant.coupons.create!
       flash[:notice] = "You bought it!"
     else
       flash[:warning] = "You don't have enouth cash to by this!"
@@ -14,5 +15,4 @@ class PurchasesController < ApplicationController
 
     redirect_to products_path
   end
-
 end
