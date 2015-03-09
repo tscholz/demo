@@ -3,9 +3,11 @@
     %tr
       %th Title
       %th Price
+      %th
 
   - @products.each do |product|
     %tbody
       %tr
         %td= product.title
         %td= product.variants.first.try(:price)
+        %td= link_to "Buy", product_purchase_path(product), method: 'POST'
