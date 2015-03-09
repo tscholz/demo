@@ -3,6 +3,5 @@ class Product < ActiveRecord::Base
 
   validates :title, presence: true
 
-  # scope :active, -> { includes(:variants).where(variants: {is_active: true}) }
-  # cant't find the error
+  scope :active, -> { includes(:variants).where(variants: {is_active: true}) }
 end
