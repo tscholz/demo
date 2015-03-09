@@ -7,7 +7,5 @@
     - @products.each do |product|
       %tr
         = product.title
-        asfadsf
       %tr
-
-
+        = product.variants.first.try(:price)

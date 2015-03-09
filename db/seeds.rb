@@ -10,7 +10,12 @@
 
 Buyer.find_or_create_by!(email: 'b@example.com') do |b|
   b.name = 'Buyer'
-  p.password = 'test_it'
+  b.password = 'test_it'
+  b.password_confirmation = 'test_it'
 end
 
-Product.create! title: 'Car', description: 'Nice Car'
+Product.find_or_create_by!(title: 'Car') do |p|
+  p.description = 'Nice Car'
+  p.variants.build price: 10, quantity: 100
+  p.variants.build price: 9, quantity: 20
+end
