@@ -40,6 +40,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 
+gem 'devise'
 
 gem 'bootstrap-sass'
 gem 'haml-rails'
