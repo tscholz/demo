@@ -7,7 +7,7 @@
 
   - @products.each do |product|
     %tbody
-      %tr
+      %tr[product]
         %td= product.title
         %td= product.price
         %td= link_to "Buy", product_purchase_path(product), method: 'POST'
