@@ -19,3 +19,7 @@ Product.find_or_create_by!(title: 'Car') do |p|
   p.variants.build price: 10, quantity: 100
   p.variants.build price: 9, quantity: 20
 end
+Product.find_or_create_by!(title: 'Flower') do |p|
+  p.description = 'Nice Flower'
+  p.variants.build price: 2, quantity: 2
+end
