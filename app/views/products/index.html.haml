@@ -1,9 +1,11 @@
 %table.table
-  %tr
-    %th Title
-    %th Price
+  %thead
+    %tr
+      %th Title
+      %th Price
 
   - @products.each do |product|
-    %tr
-      %td= product.title
-      %td= product.variants.first.try(:price)
+    %tbody
+      %tr
+        %td= product.title
+        %td= product.variants.first.try(:price)
