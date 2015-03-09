@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+#
+
+Buyer.find_or_create_by!(email: 'b@example.com') do |b|
+  b.name = 'Buyer'
+  p.password = 'test_it'
+end
+
+Product.create! title: 'Car', description: 'Nice Car'
