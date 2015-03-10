@@ -8,18 +8,19 @@
 #
 #
 
-Buyer.find_or_create_by!(email: 'b@example.com') do |b|
-  b.name = 'Buyer'
-  b.password = 'test_it'
-  b.password_confirmation = 'test_it'
-end
+if Rails.env.development?
+  Buyer.find_or_create_by!(email: 'b@example.com') do |b|
+    b.name = 'Buyer'
+    b.password = 'test_it'
+    b.password_confirmation = 'test_it'
+  end
 
-Product.find_or_create_by!(title: 'Car') do |p|
-  p.description = 'Nice Car'
-  p.variants.build price: 10, quantity: 100
-  p.variants.build price: 9, quantity: 20
-end
-Product.find_or_create_by!(title: 'Flower') do |p|
-  p.description = 'Nice Flower'
-  p.variants.build price: 2, quantity: 2
+  10.times do
+    Product.create! do |p|
+      p.title = Faker::Commerce.product_name
+      p.description = Faker::Lorem.sentence 3
+      p.variants.build price: Faker::Commerce.price, quantity: Faker::Number.digit
+      p.variants.build price: Faker::Commerce.price, quantity: Faker::Number.digit
+    end
+  end
 end
