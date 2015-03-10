@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Products list', type: :feature do
   background do
-    login_as @user = FactoryGirl.create(:buyer)
+    @user = FactoryGirl.create :buyer
     @product = FactoryGirl.create :product, title: 'Car', variants: [FactoryGirl.build(:variant, price: 9)]
   end
 

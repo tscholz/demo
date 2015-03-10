@@ -6,8 +6,10 @@ RSpec.feature "Authentication" do
     @product = FactoryGirl.create :product_with_variants
   end
 
-  scenario "Visit products without log in first" do
+  scenario "Buy products without log in first" do
     visit products_path
+
+    click_link 'Buy'
 
     expect(page).to have_content 'Log in'
 
@@ -16,6 +18,7 @@ RSpec.feature "Authentication" do
 
     click_button 'Log in'
 
+    # Back on products page
     expect(page).to have_css "##{dom_id @product}"
   end
 end
