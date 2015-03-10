@@ -11,5 +11,5 @@
     - @products.each do |product|
       %tr[product]
         %td= product.title
-        %td= product.price
+        %td= number_to_currency product.price
         %td= link_to "Buy", product_purchase_path(product), method: 'POST'
