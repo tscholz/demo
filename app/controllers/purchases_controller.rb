@@ -1,11 +1,9 @@
 class PurchasesController < ApplicationController
 
   def create
-    @purchase = Product.find(params[:product_id]).cheapest
-    current_buyer.buy_for @purchase.price
+    @purchase = Purchase.build variant: variant, buyer: current_buyer
 
-    if current_buyer.save
-      update_purchase!
+    if @purchase.save
       flash[:notice] = "You bought it!"
     else
       flash[:warning] = "You don't have enouth cash to buy this!"
@@ -16,8 +14,7 @@ class PurchasesController < ApplicationController
 
 
   private
-  def update_purchase!
-    @purchase.decrement! :quantity
-    @purchase.coupons.create!
+  def variant
+    Product.find(params[:product_id]).cheapest
   end
 end
